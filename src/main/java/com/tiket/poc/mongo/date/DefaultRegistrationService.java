@@ -36,7 +36,7 @@ public class DefaultRegistrationService implements RegistrationService {
 
   @Override
   public Flux<Person> streamAll() {
-    return mongoTemplate.tail(query(where("fullName").exists(true)), Person.class);
+    return personRepository.findAll();
   }
 
   @Override
