@@ -47,7 +47,7 @@ networks:
 
 ### From first mongo node
 
->>> Log into first mongo node ```docker exec -it resources_mongo1_1 mongo --port 30001```
+> Log into first mongo node ```docker exec -it resources_mongo1_1 mongo --port 30001```
 
 ```sh
 db = (new Mongo('localhost:30001')).getDB('test')
@@ -74,7 +74,7 @@ config = {
 }
 ```
 
-### Initiate to start replicating data of `trainsearch` replica set
+### Initiate to start replicating data of replica set
 
 ```sh
 rs.initiate(config)
