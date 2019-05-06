@@ -3,6 +3,7 @@ package com.tiket.poc.mongo.date;
 import java.time.LocalDate;
 import javax.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,8 +34,8 @@ public class RegisterController {
         );
   }
 
-  @GetMapping
-  public Flux<Person> showAll() {
+  @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+  public Flux<Person> streamAll() {
     return registrationService.streamAll();
   }
 

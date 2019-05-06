@@ -3,6 +3,8 @@ package com.tiket.poc.mongo.date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import org.springframework.data.mongodb.core.ChangeStreamEvent;
+import org.springframework.data.mongodb.core.ChangeStreamOptions;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -36,7 +38,8 @@ public class DefaultRegistrationService implements RegistrationService {
 
   @Override
   public Flux<Person> streamAll() {
-    return personRepository.findAll();
+    return mongoTemplate.changeStream("person", ChangeStreamOptions.builder().build() ,Person.class)
+        .map(ChangeStreamEvent::getBody);
   }
 
   @Override
